@@ -14,7 +14,7 @@ window.title("Atarist Game")
 
 # level selection
 level_one_btn = Button(window, text="START GAME", font=("Stencil", 15), padx=20, pady=20, bg="Orange", fg="Maroon",
-                command=play_game, width=10)
+                command=lambda : [play_game()], width=10)
 level_one_btn.grid(row=2, column=2)
 
 # help button

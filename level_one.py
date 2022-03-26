@@ -1,5 +1,6 @@
 from tkinter import *  # importing everything from tkinter
 from tkinter import messagebox  # for popup messages for winning or error
+from level_two import level_2
 
 def play_game():
 
@@ -71,8 +72,13 @@ def play_game():
             winner = True
 
         if winner:
-            messagebox.showinfo("TICTACTOE", f"Congratulations\nPlayer {text} Wins")
+            value = messagebox.askokcancel("TICTACTOE", f"Congratulations\nPlayer {text} Wins.\nGo to LEVEL 2?")
             disable_all_buttons()
+            if value:
+                game_window.destroy()
+                level_2()
+            elif value == False:
+                reset()
 
         # checking if there is no winner and giving message if there no winner
         if click_count == 9 and winner == False:
@@ -103,8 +109,9 @@ def play_game():
     def reset():
         
         global b1, b2, b3, b4, b5, b6, b7, b8, b9  # to make the buttons accessible outside this function
-        global buttons
+        global buttons, click_count
         buttons = list()
+        click_count = 0
 
         # building the buttons for our game and making them have the command of the function b_click()
         b1 = Button(game_window, text="", font=("Helvetica", 20), height=3, width=6, fg="white", bg="Blue",
